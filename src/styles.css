@@ -1,0 +1,253 @@
+:root {
+  --sand: #c4783a;
+  --dune: #8a4a22;
+  --sky: #e8b87a;
+  --ink: #2a1810;
+  --cloth: #c23b2a;
+  --glow: #f4d6a0;
+  --mist: rgba(42, 24, 16, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--sand);
+  font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
+  color: #fff8f0;
+}
+
+#app, #game {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+#brand {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  left: 16px;
+  font-size: clamp(22px, 5vw, 34px);
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+#chapter-title {
+  position: absolute;
+  top: max(48px, calc(env(safe-area-inset-top) + 36px));
+  left: 16px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
+#energy-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: max(28px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(220px, 48vw);
+}
+
+#energy-svg { width: 100%; height: auto; display: block; }
+
+#net-status {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 16px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  font-family: "PingFang SC", "Hiragino Sans GB", sans-serif;
+}
+
+#hint {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+  max-width: 80vw;
+}
+
+#hint.show { opacity: 0.95; }
+
+#joystick {
+  position: absolute;
+  left: max(16px, env(safe-area-inset-left));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 6;
+  pointer-events: auto;
+}
+
+#stick-base {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(42, 24, 16, 0.28);
+  border: 1px solid rgba(255, 248, 240, 0.28);
+  position: relative;
+}
+
+#stick-knob {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(244, 214, 160, 0.55);
+}
+
+#chirp-btn {
+  position: absolute;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(36px, env(safe-area-inset-bottom));
+  z-index: 6;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 248, 240, 0.35);
+  background: rgba(194, 59, 42, 0.55);
+  color: #fff8f0;
+  font-size: 26px;
+  pointer-events: auto;
+}
+
+#badges {
+  position: absolute;
+  left: 16px;
+  top: max(76px, calc(env(safe-area-inset-top) + 64px));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 6;
+  pointer-events: auto;
+}
+
+.badge {
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  background: rgba(42, 24, 16, 0.4);
+  color: rgba(255, 248, 240, 0.75);
+  font-family: "PingFang SC", sans-serif;
+}
+
+.badge.active {
+  background: rgba(194, 59, 42, 0.65);
+  color: #fff;
+}
+
+#title-screen, #end-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(244, 214, 160, 0.35), transparent 55%),
+    linear-gradient(180deg, #e8b87a 0%, #c4783a 45%, #6e3418 100%);
+}
+
+#title-screen.hidden, #end-screen.hidden { display: none; }
+
+.title-inner {
+  text-align: center;
+  padding: 24px;
+}
+
+.title-inner h1 {
+  margin: 0 0 12px;
+  font-size: clamp(48px, 14vw, 84px);
+  letter-spacing: 0.35em;
+  font-weight: 500;
+  text-indent: 0.35em;
+  text-shadow: 0 8px 40px rgba(42, 24, 16, 0.35);
+}
+
+.title-inner p {
+  margin: 0 0 28px;
+  opacity: 0.85;
+  letter-spacing: 0.18em;
+  font-size: 14px;
+}
+
+.keys {
+  margin-top: 18px !important;
+  font-size: 11px !important;
+  opacity: 0.55 !important;
+  font-family: "PingFang SC", sans-serif;
+  letter-spacing: 0.06em !important;
+}
+
+#start-btn, #restart-btn {
+  border: 1px solid rgba(255, 248, 240, 0.55);
+  background: rgba(42, 24, 16, 0.28);
+  color: #fff8f0;
+  padding: 12px 36px;
+  font-size: 16px;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  border-radius: 2px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .touch-only { opacity: 0.35; }
+}
+
+#fade {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  background: #f2e0c0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+#fade.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 280px), (max-height: 300px) {
+  #brand { font-size: 14px; left: 6px; top: 4px; letter-spacing: 0.1em; }
+  #chapter-title { font-size: 9px; top: 22px; left: 6px; }
+  #net-status { font-size: 8px; right: 6px; top: 4px; }
+  #energy-wrap { width: 90px; bottom: 8px; }
+  #joystick, #chirp-btn { display: none; }
+  #badges { top: 40px; left: 4px; }
+  .badge { padding: 3px 6px; font-size: 8px; }
+  .title-inner h1 { font-size: 22px; letter-spacing: 0.15em; }
+  .title-inner p { font-size: 9px; margin-bottom: 12px; }
+  #start-btn, #restart-btn { padding: 6px 14px; font-size: 11px; }
+  .keys { display: none; }
+}

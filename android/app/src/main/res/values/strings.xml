@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">风旅</string>
+    <string name="title_activity_main">风旅</string>
+    <string name="package_name">com.wind.pilgrim</string>
+    <string name="custom_url_scheme">com.wind.pilgrim</string>
+</resources>

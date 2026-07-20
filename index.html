@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>风旅</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="game"></canvas>
+
+    <div id="hud">
+      <div id="brand">风旅</div>
+      <div id="chapter-title"></div>
+      <div id="energy-wrap" aria-hidden="true">
+        <svg viewBox="0 0 100 20" id="energy-svg">
+          <path id="energy-bg" d="M8,16 Q50,2 92,16" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="3" stroke-linecap="round"/>
+          <path id="energy-fg" d="M8,16 Q50,2 92,16" fill="none" stroke="#f4d6a0" stroke-width="3" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100"/>
+        </svg>
+      </div>
+      <div id="net-status">离线朝圣</div>
+      <div id="hint"></div>
+    </div>
+
+    <div id="joystick" class="touch-only">
+      <div id="stick-base"><div id="stick-knob"></div></div>
+    </div>
+
+    <button id="chirp-btn" class="touch-only" type="button" aria-label="鸣叫">◎</button>
+
+    <div id="badges">
+      <button type="button" id="ring-badge" class="badge">戒指</button>
+      <button type="button" id="cane-badge" class="badge">手杖</button>
+    </div>
+
+    <div id="title-screen">
+      <div class="title-inner">
+        <h1>风旅</h1>
+        <p>披风、鸣叫、偶遇同路人</p>
+        <button type="button" id="start-btn">启程</button>
+        <p class="keys">键盘 WASD 移动 · 空格滑翔 · F 鸣叫</p>
+      </div>
+    </div>
+
+    <div id="end-screen" class="hidden">
+      <div class="title-inner">
+        <h1>归途</h1>
+        <p id="end-note">风停了。山还在。</p>
+        <button type="button" id="restart-btn">再走一程</button>
+      </div>
+    </div>
+
+    <div id="fade" aria-hidden="true"></div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

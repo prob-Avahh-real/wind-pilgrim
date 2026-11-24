@@ -12,7 +12,8 @@
     "dev:all": "concurrently -k \"npm run server\" \"npm run dev\"",
     "sync": "npm run build && npx cap sync",
     "mobile:android": "npm run build && npx cap sync android",
-    "apk": "npm run mobile:android && cd android && ./gradlew assembleDebug"
+    "apk": "npm run mobile:android && cd android && node ../../tools/run-gradle-android.mjs assembleDebug",
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "@capacitor/android": "^6.2.0",

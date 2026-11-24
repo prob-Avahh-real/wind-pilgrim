@@ -9,3 +9,15 @@ android/local.properties
 *.ipa
 .env
 .vite/
+# Publish hygiene & bloat exclusions
+.env.*
+!.env.example
+.npm-cache/
+.build/
+DerivedData/
+.gradle/
+ios/App/Pods/
+__pycache__/
+.venv/
+coverage/
+*.aab
